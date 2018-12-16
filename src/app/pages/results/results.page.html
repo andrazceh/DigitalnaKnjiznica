@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Rezultati iskanja </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list  *ngIf="advanced" >
+   <ion-item *ngFor="let item of items" button   [routerLink]="['/publikacija', item.ID]" routerDirection="forward">
+    {{ item.Naslov }}
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="!advanced && !areResults">
+  <ion-item button *ngFor="let item of items" (click)="getBrowse(item[0])">
+    {{item[1]}}
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="areResults">
+  <ion-item button *ngFor="let item of items"  [routerLink]="['/publikacija', item.ID]" routerDirection="forward">
+   {{ item.Naslov }}
+ </ion-item>
+</ion-list>
+
+<ion-infinite-scroll *ngIf="infiniteScroll" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

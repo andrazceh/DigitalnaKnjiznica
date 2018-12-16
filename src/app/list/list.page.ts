@@ -1,39 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ApiDataService } from "../services/api-data.service";
+import { Storage } from "@ionic/storage";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+  selector: "app-list",
+  templateUrl: "list.page.html",
+  styleUrls: ["list.page.scss"]
 })
 export class ListPage implements OnInit {
   private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  public items: Array<Object> = [];
+  public merged:Object;
+  constructor(private apidata: ApiDataService, private storage: Storage) {
+
   }
 
-  ngOnInit() {
+    ngOnInit() {
+          this.getData();
+    }
+
+  getData(){
+    this.storage.forEach((value, key, index) => {
+      if (key != "police") {
+      if (value.pregled["pregled"] == true) {
+           this.merged={"ID":key, "Naslov":value.pregled["naslov"]};
+           this.items.push(this.merged);
+      }
+      }
+    });
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  doRefresh(event) {
+    this.items = [];
+    this.getData();
+
+    setTimeout(() => {
+      console.log("Async operation has ended");
+      event.target.complete();
+    }, 2000);
+  }
 }

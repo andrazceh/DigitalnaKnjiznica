@@ -1,6 +1,8 @@
 {
   "name": "DigitalnaKnjiznica",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "71c5e4f3"
 }

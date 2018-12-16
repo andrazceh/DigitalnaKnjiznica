@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="isDataAvailable"> {{ publikacija.Naslov}} </ion-title>
+    <ion-title *ngIf="isDataAvailable" style="font-size:1rem;">{{ publikacija.VrstaGradiva.Naziv}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="isDataAvailable">
+  <ion-item>
+<ion-title style="font-size:1rem;" *ngIf="isDataAvailable">Opis</ion-title>
+{{ publikacija.Opis}}
+</ion-item>
+<ion-item *ngIf="isDataAvailable">
+<ion-title  style="font-size:1rem;" *ngIf="isDataAvailable">Ključne Besede</ion-title>
+<ion-label  *ngFor="let s of publikacija.KljucneBesede" > {{ s }} </ion-label>
+</ion-item>
+
+<ion-item>
+<ion-title style="font-size:1rem;" *ngIf="isDataAvailable">Organizacija</ion-title>
+<ion-label>{{ publikacija.Organizacija.Naziv}}</ion-label>
+</ion-item>
+<ion-item >
+<ion-title style="font-size:1rem;" *ngIf="isDataAvailable">Datum</ion-title>
+<ion-label> {{ publikacija.DatumObjave}}</ion-label>
+</ion-item>
+<ion-item>
+<ion-title style="font-size:1rem;">Avtorji</ion-title>
+<ion-label *ngFor="let s of publikacija.Osebe" > <ng-container *ngIf='s.VlogaNaziv=="Avtor" '>{{ s.Ime + " " + s.Priimek }}</ng-container></ion-label>
+</ion-item>
+
+<ion-item>
+<ion-title style="font-size:1rem;">Mentorji</ion-title>
+<ion-label *ngFor="let s of publikacija.Osebe" > <ng-container *ngIf='s.VlogaNaziv=="Mentor" '>{{ s.Ime + " " + s.Priimek }}</ng-container></ion-label>
+</ion-item>
+
+<ion-item>
+<ion-title style="font-size:1rem;">Komentorji</ion-title>
+<ion-label *ngFor="let s of publikacija.Osebe" > <ng-container *ngIf='s.VlogaNaziv=="Komentor" '>{{ s.Ime + " " + s.Priimek }}</ng-container></ion-label>
+</ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center="">
+    <ion-row>
+    <ion-col col-4 >
+      <button  id="button-heart" ion-button padding (click)="addToFavs()" [style.color]="buttonHeart">
+          <ion-icon name="heart" ></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-4>
+      <button  ion-button padding (click)="addToPregled()" [style.color]="buttonPregled">
+          <ion-icon name="list"></ion-icon>
+      </button>
+    </ion-col>
+</ion-row>
+
+
+  </ion-toolbar>
+</ion-footer>

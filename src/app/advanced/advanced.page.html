@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Napredno Iskanje</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-searchbar [(ngModel)]="input1"></ion-searchbar>
+
+    <ion-select [(ngModel)]="stolpec1" value="naslov" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="naslov">Naslov</ion-select-option>
+        <ion-select-option value="avtor">Avtor</ion-select-option>
+        <ion-select-option value="opis">Opis</ion-select-option>
+        <ion-select-option value="kljucneBesede">Ključne Besede</ion-select-option>
+        <ion-select-option value="cistoBesedilo">Celotno Besedilo</ion-select-option>
+        <ion-select-option value="letoIzida">Leto Izida</ion-select-option>
+    </ion-select>
+
+    <ion-select [(ngModel)]="operator1" value="and" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="and">IN</ion-select-option>
+        <ion-select-option value="or">ALI</ion-select-option>
+        <ion-select-option value="andNot">IN NE</ion-select-option>
+    </ion-select>
+    <ion-searchbar [(ngModel)]="input2"></ion-searchbar>
+    <ion-select [(ngModel)]="stolpec2" value="naslov" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="naslov">Naslov</ion-select-option>
+        <ion-select-option value="avtor">Avtor</ion-select-option>
+        <ion-select-option value="opis">Opis</ion-select-option>
+        <ion-select-option value="kljucneBesede">Ključne Besede</ion-select-option>
+        <ion-select-option value="cistoBesedilo">Celotno Besedilo</ion-select-option>
+        <ion-select-option value="letoIzida">Leto Izida</ion-select-option>
+    </ion-select>
+    <ion-select [(ngModel)]="operator2" value="and" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="and">IN</ion-select-option>
+        <ion-select-option value="or">ALI</ion-select-option>
+        <ion-select-option value="andNot">IN NE</ion-select-option>
+    </ion-select>
+    <ion-searchbar [(ngModel)]="input3"></ion-searchbar>
+    <ion-select [(ngModel)]="stolpec3" value="naslov" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="naslov">Naslov</ion-select-option>
+        <ion-select-option value="avtor">Avtor</ion-select-option>
+        <ion-select-option value="opis">Opis</ion-select-option>
+        <ion-select-option value="kljucneBesede">Ključne Besede</ion-select-option>
+        <ion-select-option value="cistoBesedilo">Celotno Besedilo</ion-select-option>
+        <ion-select-option value="letoIzida">Leto Izida</ion-select-option>
+    </ion-select>
+    <ion-select [(ngModel)]="operator3" value="and" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="and">IN</ion-select-option>
+        <ion-select-option value="or">ALI</ion-select-option>
+        <ion-select-option value="andNot">IN NE</ion-select-option>
+    </ion-select>
+
+    <ion-searchbar [(ngModel)]="input4"></ion-searchbar>
+
+    <ion-select [(ngModel)]="stolpec4" value="naslov" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="naslov">Naslov</ion-select-option>
+        <ion-select-option value="avtor">Avtor</ion-select-option>
+        <ion-select-option value="opis">Opis</ion-select-option>
+        <ion-select-option value="kljucneBesede">Ključne Besede</ion-select-option>
+        <ion-select-option value="cistoBesedilo">Celotno Besedilo</ion-select-option>
+        <ion-select-option value="letoIzida">Leto Izida</ion-select-option>
+    </ion-select>
+   <ion-button (click) ="getData() ">Iskanje</ion-button>
+</ion-content>
