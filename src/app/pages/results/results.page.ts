@@ -79,33 +79,48 @@ export class ResultsPage implements OnInit {
         this.query="br"+this.query+"&cat2="+value;
       }
     }
-    if(!this.query.includes("cat3")){
+  /**  if(!this.query.includes("cat3")){
       this.query=this.query+"&cat3="+value;
       /**if(this.query.includes("br")){
         this.query=this.query.split('cat1')[1];
         this.query="cat1"+this.query;
-      }**/
+      }
     }else{
-      
+
     }
-
-
+      **/
     console.log(this.query);
     this.router.navigate(['/results', this.query]);
 
   }
 
   doInfinite(infiniteScroll) {
-    setTimeout(() => {
-      this.scrollCount++;
-      this.apidata
-        .getBrowse(this.query, this.scrollCount)
-        .then(data =>
-          JSON.parse(data.data).results.map(obj => {
-            this.items.push(obj);
-          })
-        );
-      infiniteScroll.target.complete();
-    }, 500);
+    if(this.advanced){
+      setTimeout(() => {
+        this.scrollCount++;
+        this.apidata
+          .getAdvancedSearch(this.query, this.scrollCount)
+          .then(data =>
+            JSON.parse(data.data).results.map(obj => {
+              this.items.push(obj);
+            })
+          );
+        infiniteScroll.target.complete();
+      }, 500);
+    }
+    else if(this.areResults){
+      setTimeout(() => {
+        this.scrollCount++;
+        this.apidata
+          .getBrowse(this.query, this.scrollCount)
+          .then(data =>
+            JSON.parse(data.data).results.map(obj => {
+              this.items.push(obj);
+            })
+          );
+        infiniteScroll.target.complete();
+      }, 500);
+    }
+
   }
 }
